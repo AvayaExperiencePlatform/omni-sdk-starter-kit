@@ -22,9 +22,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/books', booksRouter);
-app.use('/books:search', booksRouter);
 app.use('/custom-notification-connector/configs', configRouter);
 app.use('/custom-notification-connector/device-registrations', deviceRegistrationRouter);
 app.use('/custom-notification-connector/device-registrations:search', deviceRegistrationRouter);
