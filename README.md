@@ -12,10 +12,10 @@ This repository provides sample code that not only demonstrates how the backend 
 
 A sample Node.js based application demonstrating how the Backend Web Application Server can be implemented to fetch JWT from Avaya Experience Platform™.
 
-[Github](sample-web-app-server/) | [Readme](sample-web-app-server/README.md)
+[GitHub](%20%20sample-web-app-server/) | [Readme](%20%20sample-web-app-server/README.md)
 
 ## Sample FCM Based Push Notification Connector
 
 A sample Node.js based application demonstrating how the Custom Notification Server can be implemented to receive push notifications from Avaya Experience Platform™ and forward the notifications to a Push Notification Provider (Firebase Cloud Messaging for this sample application).
 
-[Github](sample-fcm-push-notification-server/) | [Readme](sample-fcm-push-notification-server/README.md)
+[GitHub](%20sample-fcm-push-notification-server/) | [Readme](%20sample-fcm-push-notification-server/README.md)
