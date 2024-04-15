@@ -65,3 +65,4 @@ These are AXP account related configurations required to access the AXP APIs. Fo
 4. `clientId` : Client ID required to authenticate AXP APIs.
 5. `clientSecret` : Secret for the above Client ID (`axp.clientId`) used to authenticate AXP APIs.
 6. `jwtValidityInterval` : Time to live for the JWT token, in minutes. Min 15 mins, Max 60 mins. Default value is `30`.
+7. `appKey` : API App Key required to authenticate AXP APIs.
