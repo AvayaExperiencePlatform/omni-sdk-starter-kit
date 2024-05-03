@@ -93,7 +93,7 @@ export async function fetchJwtToken(
     authToken
 ) {
 
-    const URL = axpHostName ? `https://${axpHostName}/api/digital/chat/v1beta/accounts/${axpAccountId}/tokens` : `https://${axpRegion}.cc.avayacloud.com/api/digital/chat/v1beta/accounts/${axpAccountId}/tokens`;
+    const URL = axpHostName ? `https://${axpHostName}/api/digital/chat/v1/accounts/${axpAccountId}/tokens` : `https://${axpRegion}.cc.avayacloud.com/api/digital/chat/v1/accounts/${axpAccountId}/tokens`;
 
     const requestBody = {
         ...customerDetails,
