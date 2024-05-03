@@ -6,7 +6,7 @@ This repository provides sample code that not only demonstrates how the backend 
 
 > :warning: IMPORTANT
 >
-> The sample applications are provided are only for the purpose of reference and shouldn't be used in > production.
+> The sample applications are provided are only for the purpose of reference and shouldn't be used in production.
 
 ## Sample Backend Web App Server
 
