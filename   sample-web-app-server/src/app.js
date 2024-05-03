@@ -83,7 +83,7 @@ app.route('/token')
             const fcmConnectorBaseUrl = config.axp.fcmConnectorBaseUrl;
             const pushConfigId = config.axp.configId;
             const appKey = config.axp.appKey;
-            const authToken = await fetchAuthToken(hostName, accountId, clientId, clientSecret);
+            const authToken = await fetchAuthToken(hostName, accountId, clientId, clientSecret, appKey);
             
             console.log(LogFormat.info("Fetched auth token."));
 
@@ -96,7 +96,7 @@ app.route('/token')
                 customerName: userDetails.userName,
                 customerIdentifiers: userDetails.userIdentifiers,
                 verifiedCustomer: userDetails.verified,
-            }, hostName, axpRegion, accountId, integrationId, jwtValidityInterval, authToken);
+            }, hostName, axpRegion, accountId, integrationId, jwtValidityInterval, authToken, appKey);
             console.log(LogFormat.info(`Fetched JWT for userId: ${userDetails.userId}`));
 			console.log(LogFormat.info(`Fetched JWT for customerIdentifiers: ${userDetails.userIdentifiers}`));
 
