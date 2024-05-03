@@ -5,6 +5,7 @@
  * @param {string} axpAccountId The Account Id to use.
  * @param {string} axpClientId Client ID required to authenticate AXP APIs.
  * @param {string} axpClientSecret Secret for the {@link axpClientId} used to authenticate AXP APIs.
+ * @param {string} appKey API App Key.
  * @returns {Promise<string>} A promise that resolves to the string access token.
  */
 export async function fetchAuthToken(
@@ -12,6 +13,7 @@ export async function fetchAuthToken(
     axpAccountId,
     axpClientId,
     axpClientSecret,
+    appKey,
 ) {
     const URL = `https://${axpHostName}/auth/realms/${axpAccountId}/protocol/openid-connect/token`;
     
@@ -25,7 +27,8 @@ export async function fetchAuthToken(
             method: 'POST',
             body: requestBody,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'appKey': appKey,
             },
             keepalive: true
         });
@@ -80,7 +83,8 @@ export async function fetchAuthToken(
  * @param {*} axpAccountId The Account Id to use.
  * @param {*} axpIntegrationId The Integration ID available to your account administrator when the integration was created.
  * @param {*} requiredJwtValidity TTL of JWT to be requested. Min 15 mins, Max 60 mins.
- * @param {*} authToken Auth token required to make AXP API calls. 
+ * @param {*} authToken Auth token required to make AXP API calls.
+ * @param {*} appKey API App Key.
  * @returns {Promise<string>} JWT toke for the requested user.
  */
 export async function fetchJwtToken(
@@ -90,7 +94,8 @@ export async function fetchJwtToken(
     axpAccountId,
     axpIntegrationId,
     requiredJwtValidity,
-    authToken
+    authToken,
+    appKey,
 ) {
 
     const URL = axpHostName ? `https://${axpHostName}/api/digital/chat/v1/accounts/${axpAccountId}/tokens` : `https://${axpRegion}.cc.avayacloud.com/api/digital/chat/v1/accounts/${axpAccountId}/tokens`;
@@ -107,7 +112,8 @@ export async function fetchJwtToken(
             body: JSON.stringify(requestBody),
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authToken}`
+                'Authorization': `Bearer ${authToken}`,
+                'appKey': appKey,
             }
         });
     
