@@ -15,7 +15,7 @@ export async function fetchAuthToken(
     axpClientSecret,
     appKey,
 ) {
-    const URL = `https://${axpHostName}/auth/realms/${axpAccountId}/protocol/openid-connect/token`;
+    const URL = `https://${axpHostName}/api/auth/v1/${axpAccountId}/protocol/openid-connect/token`;
     
     const requestBody = new URLSearchParams();
     requestBody.append("grant_type", "client_credentials");
