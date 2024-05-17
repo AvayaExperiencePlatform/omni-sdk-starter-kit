@@ -83,6 +83,7 @@ app.route('/token')
             const fcmConnectorBaseUrl = config.axp.fcmConnectorBaseUrl;
             const pushConfigId = config.axp.configId;
             const appKey = config.axp.appKey;
+            const callingRemoteAddress = config.axp.callingRemoteAddress;
             const authToken = await fetchAuthToken(hostName, accountId, clientId, clientSecret, appKey);
             
             console.log(LogFormat.info("Fetched auth token."));
@@ -108,7 +109,8 @@ app.route('/token')
                 axpRegion: axpRegion,
                 fcmConnectorBaseUrl: fcmConnectorBaseUrl,
                 configId: pushConfigId,
-                appKey: appKey
+                appKey: appKey,
+                callingRemoteAddress: callingRemoteAddress,
             };
             
             response.json(responseBody);
@@ -143,6 +145,33 @@ app.route('/token')
                 });
         }
     });
+
+app.route('/config')
+    .options(cors(corsConfig))
+    .get(cors(corsConfig), async (request, response) => {
+        /**
+         * GET /config response body: Tenant-specific configuration information for the SDK.
+         * @typedef SDKConfiguration
+         * @property {string} axpIntegrationId Integration ID of the AXP tenant.
+         * @property {string} axpHostName Host name of AXP to connect.
+         * @property {string} callingRemoteAddress Remote address to use when connecting calls.
+         */
+
+        console.log(LogFormat.info(`${request.method} ${request.path}`));
+
+        /** @type SDKConfiguration */
+        const responseBody = {
+            axpIntegrationId: config.axp.integrationId,
+            axpHostName: config.axp.hostName,
+            fcmConnectorBaseUrl: config.axp.fcmConnectorBaseUrl,
+            configId: config.axp.configId,
+            appKey: config.axp.appKey,
+            callingRemoteAddress: config.axp.callingRemoteAddress,
+        };
+
+        response.json(responseBody);
+    });
+    
 
 const server = (() => {
     // HTTPS mode.
