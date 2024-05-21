@@ -52,5 +52,12 @@ export const config = {
 
         /** Base URL of Sample FCM Based Push Notification Connector */
 		fcmConnectorBaseUrl: "<Sample FCM Connector Base Url>"
+
+        /**
+         * The remote address (typically a phone number) used for placing voice
+         * calls to your contact center. This field is only used by the SDK's
+         * calling module.
+         */
+        callingRemoteAddress: "<Phone Number>"
     },
 }
