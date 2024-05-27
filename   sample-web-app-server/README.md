@@ -51,18 +51,22 @@ These are the configurations related to the Sample Token Server. Following are t
 
 1. `port` : The port on which the Sample Token Server server will listen for incoming HTTP requests. Default value is `3000`.
 2. `allowedOrigins` : An Array of origins allowed by this server. This is required for CORS. Typically the URL of the website hosting the chat widget. For example `["http://www.example.com"]`. Use `["*"]` for allowing all origins. Default value is `["*"]`.
-3. `ssl`: This configuration controls whether the server is started in HTTPS mode or normal HTTP mode. Make this `true` to start this server in HTTPS mode. `false` for starting in HTTP mode. Default value is `false`.
+3. `ssl`: Controls whether the server is started in HTTPS mode or normal HTTP mode. Value should be `true` to start this server in HTTPS mode. `false` for starting in HTTP mode. Default value is `false`.
 4. `sslCertificatePath` : Path to the SSL certificate required for HTTPS. Required if `server.ssl` is true. Default value is `""` (empty string).
 5. `sslPrivateKeyPath` : Path to the private key required for decrypting SSL certificate. Required if `server.ssl` is true. Default value is `""` (empty string).
+6. `sslPassPhrase` : Passphrase required for required for decrypting SSL certificate. Required if `server.ssl` is true. Default value is `""` (empty string).
 
 ### `axp`
 
 These are AXP account related configurations required to access the AXP APIs. Following are the configuration options.
 
-1. `accountId` : The unique 6 character internal id that represents the AXP customer account.
-2. `hostName` : Host region specific to AXP. For example - `na.api.avayacloud.com` for North America region.
-3. `integrationId` : The unique 36 character Integration ID available to your account administrator when the integration was created.
-4. `clientId` : Client ID required to authenticate AXP APIs.
-5. `clientSecret` : Secret for the above Client ID (`axp.clientId`) used to authenticate AXP APIs.
-6. `jwtValidityInterval` : Time to live for the JWT token, in minutes. Min 15 mins, Max 60 mins. Default value is `30`.
-7. `appKey` : API App Key required to authenticate AXP APIs.
+1. `hostName` : Host region specific to AXP. For example - `na.api.avayacloud.com` for North America region.
+2. `accountId` : The unique 6 character AXP customer account ID.
+3. `integrationId` : The 36 character integration ID that your app will connect through. This is obtained from your account administrator when setting up an AXP SDK integration.
+4. `clientId` : Client ID used to obtain an access token that will be used by the client to authenticate with AXP APIs.
+5. `clientSecret` : Secret for the above Client ID (`axp.clientId`).
+6. `appKey` : The application key used to authenticate your application with AXP.  This key is received along with your client ID and client secret when registering an application with AXP. This must be included in the `appkey` HTTP header for all AXP requests.
+7. `jwtValidityInterval` : Time to live for the JWT token to be used by the client, in minutes. Must be between 15 and 60 minutes. Default value is `30`. Once this token expires the client application will need to request a new token to continue using the AXP Omni SDK.
+8. `callingRemoteAddress` : The remote address (typically a phone number) used for placing voice calls to your contact center. This field is only used by the SDK's calling module.
+9. `fcmConnectorBaseUrl` : Base URL of the Sample Firebase Cloud Messaging connector used by the mobile messaging demo application. This is used to register the device's push token to be able to receive push notifications from Firebase.
+10. `configId`: The AXP Push notification configuration ID used to receive messaging push notifications. This ID is obtained from your account administrator when setting up an AXP SDK Push Notification Configuration.

@@ -33,18 +33,20 @@ export async function fetchAuthToken(
             keepalive: true
         });
 
-        const responseBody = await response.json();
-
+        const responseBodyText = await response.text();
+        
         if (response.status !== 200) {
             throw new Error(
                 `Expected 200 from server but got ${response.status}.`, 
                 {cause: {
                     invalidResponse: true,
-                    apiResponseBody: responseBody,
+                    apiResponseBody: responseBodyText,
                     apiResponseStatus: response.status
                 }}
             );
         }
+
+        const responseBody = JSON.parse(responseBodyText);
 
         if (!(responseBody && responseBody.access_token)) {
             throw new Error(
@@ -116,21 +118,21 @@ export async function fetchJwtToken(
                 'appKey': appKey,
             }
         });
-    
-        const responseBody = await response.json();
 
-		const logResponse = JSON.stringify(responseBody);
+        const responseBodyText = await response.text();
 		
         if (response.status !== 201) {
             throw new Error(
                 `Expected 201 from server but got ${response.status}.`, 
                 {cause: {
                     invalidResponse: true,
-                    apiResponseBody: responseBody,
+                    apiResponseBody: responseBodyText,
                     apiResponseStatus: response.status
                 }}
             );
         }
+
+        const responseBody = JSON.parse(responseBodyText);
 
         if (!(responseBody && responseBody.jwtToken)) {
             throw new Error(
