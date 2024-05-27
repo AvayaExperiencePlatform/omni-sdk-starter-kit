@@ -131,6 +131,7 @@ app.route('/token')
                 
                 if (("cause" in cause.error) && ("invalidResponse" in cause.error.cause)) {
                     responseMessage = `${responseMessage} ${cause.error.message}`;
+                    console.error(LogFormat.error(responseMessage), JSON.stringify(cause.error.cause, null, 2));
                 } 
             }
             
