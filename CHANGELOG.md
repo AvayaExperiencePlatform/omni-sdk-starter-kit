@@ -2,7 +2,7 @@
 
 ## May 27, 2024
 
-- Adding callingRemoteAddress in configuration.js for WebRTC
+- Adding callingRemoteAddress in configuration.js for WebRTC Calling
 - Fixing error logging
 
 ## May 6, 2024
