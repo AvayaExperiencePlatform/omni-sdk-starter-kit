@@ -110,6 +110,24 @@ var getSessionDeviceMap = () => { return dataServices.getSessionDeviceMap(); };
   
     var fcmAdminApp = config.fcmAdminApp;
     notification.message.token = deviceToken;
+
+    // Add mutable-content to the payload for iOS devices
+    let deviceData = getDeviceConfigMap().get(deviceToken);
+    if(deviceData.type && 'ios' === deviceData.type.toLowerCase()){
+      var t = new Date().getTime();
+      notification.message.notification = {
+        title: "title " + t,
+        body: "body " + t,
+      };
+      notification.message.apns = 
+      { 
+        payload: {
+          aps: {
+            "mutable-content": 1
+          }
+        }
+      };
+    }
   
     if (!fcmAdminApp) {
       // Initialize firebase and save it in the config
